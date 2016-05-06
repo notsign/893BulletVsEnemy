@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="10" tilewidth="32" tileheight="32" nextobjectid="14">
+ <tileset firstgid="1" name="Wat" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
+  <image source="resources/2ypcht4.png" trans="ff00ff" width="1024" height="1024"/>
+  <tile id="0">
+   <properties>
+    <property name="bgm" value="Access"/>
+    <property name="isSensor" type="bool" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="20" height="10">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+123,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,125,
+155,156,156,156,156,156,156,156,156,156,156,156,156,156,156,156,156,156,156,157
+</data>
+ </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="8" name="spawn point" type="object" x="32" y="192" width="32" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+    <property name="isSensor" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="11" name="level" type="object" x="0" y="0" width="640" height="320">
+   <properties>
+    <property name="bgm" value="Access"/>
+    <property name="isSensor" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="12" name="ground" type="fixture" x="0" y="256" width="640" height="64">
+   <properties>
+    <property name="body" value="level"/>
+    <property name="categoryBits" type="int" value="1"/>
+    <property name="maskBits" type="int" value="32767"/>
+   </properties>
+  </object>
+  <object id="13" name="enemy spawn" type="object" x="576" y="192" width="32" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+    <property name="isSensor" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
