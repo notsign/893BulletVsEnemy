@@ -88,9 +88,6 @@ public class ScrBulletVsEnemy implements Screen, InputProcessor {
 				Fixture enemyFixture = (fa.getFilterData().groupIndex == -2) ? fa : (fb.getFilterData().groupIndex == -2) ? fb : null;
 				Fixture bulletFixture = (fa.getFilterData().groupIndex == -1) ? fa : (fb.getFilterData().groupIndex == -1) ? fb : null;
 
-				if(!c.isTouching())
-					return; //lol who cares
-
 				if(enemyFixture != null && bulletFixture != null){ // An enemy and a bullet contacted
 					// Find the enemy that owns this fixture
 					for(Enemy enemy : enemies){
@@ -113,7 +110,7 @@ public class ScrBulletVsEnemy implements Screen, InputProcessor {
 			}
 		});
 
-		map = new Map(world, "debugroom");
+		map = new Map(world, "simple_map");
 
 	}
 

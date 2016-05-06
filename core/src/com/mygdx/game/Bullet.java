@@ -40,7 +40,9 @@ public class Bullet {
         shape.setAsBox(2f, 2f);
         FixtureDef bulletfdef = new FixtureDef();
         bulletfdef.shape = shape;
-        bulletfdef.filter.groupIndex = -1;
+        bulletfdef.filter.groupIndex = -1; // Don't collide with another bullet
+        bulletfdef.filter.categoryBits = 4;
+        bulletfdef.filter.maskBits = 1 | 8; // Ground, enemy
         bullet.setUserData("bullet");
         // group index explanation:
         // Collision groups let you specify an integral group index.

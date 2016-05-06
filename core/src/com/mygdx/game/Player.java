@@ -57,8 +57,8 @@ public class Player {
         fdefPlayer = new FixtureDef();
         fdefPlayer.shape = shape;
         fdefPlayer.friction = 1;
-        //fdefPlayer.isSensor = true;
-        fdefPlayer.filter.groupIndex = -1;
+        fdefPlayer.filter.categoryBits = 2;
+        fdefPlayer.filter.maskBits = 1 | 8; // Terrain, enemy
         mainBody.setSleepingAllowed(false);
         mainBody.createFixture(fdefPlayer);
         mainBody.setUserData("Player");
@@ -68,11 +68,9 @@ public class Player {
     private void createFootSensor() {
         shape = new PolygonShape();
 
-        shape.setAsBox(playerwidth / 4, 0.2f, new Vector2(mainBody.getWorldCenter().x, mainBody.getWorldCenter().y - playerwidth / 2), 0);
+        shape.setAsBox(playerwidth / 4, 0.2f, new Vector2(mainBody.getLocalCenter().x, mainBody.getLocalCenter().y - (playerheight / 4) - 0.1f), 0);
         fdefFoot = new FixtureDef();
         fdefFoot.shape = shape;
-        fdefFoot.filter.categoryBits = 1;
-        fdefFoot.filter.groupIndex = -1;
         mainBody.createFixture(fdefFoot);
         shape.dispose();
     }
