@@ -57,8 +57,8 @@ public class Player {
         fdefPlayer = new FixtureDef();
         fdefPlayer.shape = shape;
         fdefPlayer.friction = 1;
-        fdefPlayer.filter.categoryBits = 2;
-        fdefPlayer.filter.maskBits = 1 | 8; // Terrain, enemy
+        fdefPlayer.filter.categoryBits = CategoryBits.PLAYER;
+        fdefPlayer.filter.maskBits = CategoryBits.BOUNDARY | CategoryBits.ENEMY; // Terrain, enemy
         mainBody.setSleepingAllowed(false);
         mainBody.createFixture(fdefPlayer);
         mainBody.setUserData("Player");

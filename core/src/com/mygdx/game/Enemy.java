@@ -66,8 +66,8 @@ public class Enemy extends Actor {
 		fdefEnemy = new FixtureDef();
 		fdefEnemy.shape = shape;
 		fdefEnemy.filter.groupIndex = -2; // Don't collide with another enemy
-		fdefEnemy.filter.categoryBits = 8;
-		fdefEnemy.filter.maskBits = 1 | 2 | 4; // Ground, player, bullet
+		fdefEnemy.filter.categoryBits = CategoryBits.ENEMY;
+		fdefEnemy.filter.maskBits = CategoryBits.BOUNDARY | CategoryBits.PLAYER | CategoryBits.BULLET; // Ground, player, bullet
 		//http://box2d.org/manual.html#_Toc258082970 to set maskbits such that enemies don't collide with each other
 		//fdefEnemy.filter.maskBits=16;
 		fdefEnemy.friction = 1;
