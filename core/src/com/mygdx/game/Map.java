@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -12,6 +13,7 @@ import net.dermetfan.gdx.physics.box2d.Box2DMapObjectParser;
 public class Map {
     Box2DMapObjectParser b2dmop;
     TiledMap tiledMap;
+    MapObjects mapObjects;
     String mapName, bgmName;
     BGM bgm;
 
@@ -19,6 +21,8 @@ public class Map {
         this.mapName = mapName;
 
         tiledMap = new TmxMapLoader().load("maps/"+mapName+".tmx");
+        MapLayer objectLayer = tiledMap.getLayers().get("Object Layer 1"); // Change name in tmx file?
+        mapObjects = objectLayer.getObjects();
 
         b2dmop = new Box2DMapObjectParser();
         b2dmop.load(world, tiledMap);
@@ -41,25 +45,22 @@ public class Map {
     }
 
     public float getUnitScale() {
-
         return b2dmop.getUnitScale();
     }
 
     public String getBGM() {
-        String BGM = (String) tiledMap.getLayers().get("Object Layer 1").getObjects().get("level").getProperties().get("bgm");
+        String BGM = (String) mapObjects.get("level").getProperties().get("bgm");
         System.out.println(BGM);
         return BGM;
     }
 
     public Vector2 getSpawnpoint() {
-        MapLayer layer = tiledMap.getLayers().get("Object Layer 1");
-        RectangleMapObject spawnpoint = (RectangleMapObject) layer.getObjects().get("spawn point");
+        RectangleMapObject spawnpoint = (RectangleMapObject)mapObjects.get("spawn point");
         return new Vector2(spawnpoint.getRectangle().getX() * 2, spawnpoint.getRectangle().getY() * 2);
     }
 
     public Vector2 getEnemySpawn() {
-        MapLayer layer = this.getMap().getLayers().get("Object Layer 1");
-        RectangleMapObject enemyspawn = (RectangleMapObject) layer.getObjects().get("enemy spawn");
+        RectangleMapObject enemyspawn = (RectangleMapObject)mapObjects.get("enemy spawn");
         return new Vector2(enemyspawn.getRectangle().getX() * 2, enemyspawn.getRectangle().getY() * 2);
     }
 
